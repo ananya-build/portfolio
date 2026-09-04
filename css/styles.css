@@ -190,6 +190,7 @@ h1,h2,h3{ font-family:var(--serif); font-weight:400; letter-spacing:.004em; }
 /* ── hero ─────────────────────────────────────────────────────── */
 
 .hero{
+  position:relative;
   min-height:100svh;
   display:flex; flex-direction:column;
   justify-content:center; align-items:center;
@@ -263,18 +264,44 @@ h1 em{
 .hero-copy .reveal:nth-child(2){ transition-delay:.1s; }
 .hero-copy .reveal:nth-child(3){ transition-delay:.2s; }
 
+/* A scroll cue belongs at the bottom edge of the hero. The hero centres
+   its content, so left in the flow this floated in mid-space reading as a
+   stray mark — and at 1px with no label there was nothing to say what it
+   was for. It is now a labelled link to the projects. */
 .scroll-cue{
-  margin-top:4rem;
-  width:1px; height:52px;
-  background:linear-gradient(180deg, transparent, rgba(150,220,240,.42), transparent);
-  position:relative; overflow:hidden;
+  position:absolute;
+  left:50%; bottom:2.2rem;
+  display:flex; flex-direction:column; align-items:center; gap:.8rem;
+  color:var(--muted); text-decoration:none;
+  transition:color .4s var(--ease), opacity .95s var(--ease), transform .95s var(--ease);
 }
-.scroll-cue span{
-  position:absolute; left:0; width:1px; height:16px;
-  background:var(--lume);
-  animation:cue 2.6s var(--ease) infinite;
+.scroll-cue:hover{ color:var(--lume); }
+.scroll-cue.reveal{ transform:translate(-50%, 18px); }
+.scroll-cue.reveal.in{ transform:translate(-50%, 0); }
+
+.cue-label{
+  font-size:.655rem; letter-spacing:.22em; text-transform:uppercase;
 }
-@keyframes cue{ 0%{top:-16px;opacity:0} 30%{opacity:1} 100%{top:52px;opacity:0} }
+.cue-line{
+  position:relative; display:block; overflow:hidden;
+  width:1px; height:74px;
+  background:linear-gradient(180deg, rgba(150,220,240,.34), rgba(150,220,240,.05));
+}
+.cue-line i{
+  position:absolute; left:0; width:1px; height:24px;
+  background:linear-gradient(180deg, transparent, var(--lume));
+  animation:cue 2.8s var(--ease) infinite;
+}
+@keyframes cue{
+  0%{ top:-24px; opacity:0 }
+  22%{ opacity:1 }
+  72%{ opacity:1 }
+  100%{ top:74px; opacity:0 }
+}
+/* No room for it on a short window, and on a phone the stacked hero puts
+   the buttons exactly where it would point — so it only earns its place
+   on a roomy desktop viewport. */
+@media (max-height:620px), (max-width:860px){ .scroll-cue{ display:none; } }
 
 /* ── work section ─────────────────────────────────────────────── */
 

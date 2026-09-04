@@ -358,11 +358,23 @@ h1 em{
   overflow-x:auto; overflow-y:hidden;
   scroll-snap-type:x mandatory;
   scroll-padding-left:clamp(1.2rem,5vw,4rem);
+  /* keep a sideways overscroll from firing the browser's back gesture,
+     without touching vertical scrolling */
+  overscroll-behavior-x:contain;
   scrollbar-width:none;
   -webkit-overflow-scrolling:touch;
   cursor:grab;
 }
 .stage::-webkit-scrollbar{ display:none; }
+
+/* Touch gets CSS snapping — it's the right feel for a swipe, and momentum
+   gestures cross the snap threshold easily. A mouse or trackpad does not:
+   Chrome reverts each discrete wheel delta back to the nearest snap point,
+   so with snapping on, a wheel simply cannot move the rail. There, the
+   settle in main.js does the aligning instead. */
+@media (hover:hover) and (pointer:fine){
+  .stage{ scroll-snap-type:none; }
+}
 .stage.dragging{ cursor:grabbing; scroll-snap-type:none; }
 .stage.dragging *{ user-select:none; }
 .stage:focus{ outline:none; }

@@ -107,13 +107,34 @@
     railFill.style.width = Math.max(0, (dr.left + dr.width / 2) - lr.left) + 'px';
   }
 
+  /* set while we're driving the scroll ourselves, so the settle below
+     doesn't interrupt an animation in progress */
+  var programmatic = false;
+  var progTimer = null;
+
   function goTo(i, smooth) {
     i = Math.max(0, Math.min(panes.length - 1, i));
-    stage.scrollTo({
-      left: paneOffset(i),
-      behavior: (smooth === false || reduce) ? 'auto' : 'smooth'
-    });
+    var animated = !(smooth === false || reduce);
+    programmatic = true;
+    clearTimeout(progTimer);
+    progTimer = setTimeout(function () { programmatic = false; }, animated ? 700 : 60);
+    stage.scrollTo({ left: paneOffset(i), behavior: animated ? 'smooth' : 'auto' });
     setActive(i);
+  }
+
+  /* Where CSS snapping is off (mouse and trackpad), align to the nearest
+     pane once scrolling has actually stopped. */
+  var settleTimer = null;
+  var cssSnaps = window.matchMedia('(hover:hover) and (pointer:fine)');
+
+  function scheduleSettle() {
+    if (reduce || cssSnaps.matches === false) return;   // touch: CSS handles it
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(function () {
+      if (down || programmatic) return;
+      var i = nearestIndex();
+      if (Math.abs(paneOffset(i) - stage.scrollLeft) > 2) goTo(i);
+    }, 180);
   }
 
   // keep active + progress bar in sync with wherever the scroll ends up
@@ -125,6 +146,7 @@
       setActive(nearestIndex());
       var max = stage.scrollWidth - stage.clientWidth;
       progress.style.width = (max > 0 ? (stage.scrollLeft / max) * 100 : 100) + '%';
+      scheduleSettle();
     });
   }, { passive: true });
 
@@ -142,21 +164,16 @@
     else if (e.key === 'End') { e.preventDefault(); goTo(panes.length - 1); }
   });
 
-  /* wheel: a mouse wheel only produces deltaY, so map it sideways —
-     but hand scrolling back to the page the moment we hit either end,
-     otherwise the section traps you. */
-  stage.addEventListener('wheel', function (e) {
-    if (e.ctrlKey) return;
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;   // real trackpad pan
+  /* No wheel handling on purpose.
 
-    var max = stage.scrollWidth - stage.clientWidth;
-    var atStart = stage.scrollLeft <= 1;
-    var atEnd   = stage.scrollLeft >= max - 1;
-    if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) return;
+     This used to map deltaY onto the rail so a mouse wheel could move the
+     timeline. It made the page feel broken: we open on the newest project,
+     which is the far right of the rail, so scrolling *up* spent the whole
+     timeline rewinding before the page would move at all. Vertical wheel
+     now always belongs to the page.
 
-    e.preventDefault();
-    stage.scrollLeft += e.deltaY;
-  }, { passive: false });
+     Horizontal movement still has: trackpad sideways pan and touch swipe
+     (both native), drag, the arrows, the rail years, and the arrow keys. */
 
   /* drag to pan */
   var down = false, startX = 0, startScroll = 0, moved = 0;

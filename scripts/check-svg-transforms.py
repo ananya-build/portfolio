@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Guard against a bug I kept reintroducing.
+"""Catch SVG transform attributes that a CSS animation would clobber.
 
 A CSS keyframe that animates `transform` overrides an SVG element's
 `transform="translate(...)"` presentation attribute. The moment the animation

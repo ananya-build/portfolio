@@ -314,7 +314,7 @@ h1 em{
 .rail-nodes{
   position:relative;
   list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns:repeat(4,1fr);
+  display:grid; grid-template-columns:repeat(5,1fr);
 }
 .rail-nodes button{
   appearance:none; background:none; border:0; padding:0;
@@ -911,26 +911,136 @@ h1 em{
   46%,58%{ filter:drop-shadow(0 0 12px rgba(95,220,236,.6)); opacity:1 }
 }
 
+/* ····· Health for Humanity ····· */
+.h4-land path{ fill:none; stroke:rgba(130,180,225,.10); stroke-width:1; }
+
+.h4-links path{
+  fill:none; stroke:rgba(95,220,236,.34); stroke-width:1;
+  stroke-dasharray:var(--len,220); stroke-dashoffset:var(--len,220);
+}
+.pane.active .h4-links path{ animation:draw 1.1s var(--ease) forwards; }
+.h4-links path:nth-child(1){ animation-delay:1.30s }
+.h4-links path:nth-child(2){ animation-delay:1.43s }
+.h4-links path:nth-child(3){ animation-delay:1.56s }
+.h4-links path:nth-child(4){ animation-delay:1.69s }
+.h4-links path:nth-child(5){ animation-delay:1.82s }
+.h4-links path:nth-child(6){ animation-delay:1.95s }
+.h4-links path:nth-child(7){ animation-delay:2.08s }
+
+.h4-reach .ring{
+  fill:none; stroke:rgba(95,220,236,.28); stroke-width:1;
+  transform-box:fill-box; transform-origin:center; opacity:0;
+}
+.pane.active .h4-reach .ring{ animation:ringOut 4s var(--ease) infinite; }
+.h4-reach .ring:nth-child(1){ animation-delay:.9s }
+.h4-reach .ring:nth-child(2){ animation-delay:1.3s }
+.h4-reach .ring:nth-child(3){ animation-delay:1.7s }
+.h4-reach .reach-fill{ opacity:0; }
+.pane.active .h4-reach .reach-fill{ animation:fadeUp 1.4s var(--ease) 1.5s forwards; }
+
+/* communities land unserved, then light up once they are connected */
+.h4-comms .comm circle{ fill:rgba(12,32,64,.9); stroke:rgba(130,180,225,.45); stroke-width:1.1; }
+.h4-comms .comm .halo{ fill:none; stroke:rgba(95,220,236,.5); opacity:0; }
+.h4-comms .comm{ opacity:0; transform-box:fill-box; transform-origin:center; }
+.pane.active .h4-comms .comm{ animation:commIn .8s var(--ease) var(--cd,0s) forwards; }
+@keyframes commIn{
+  0%{ opacity:0; transform:scale(.5) }
+  100%{ opacity:1; transform:none }
+}
+.pane.active .h4-comms .comm .halo{ animation:commLit 3.4s var(--ease) var(--d,2s) infinite; }
+@keyframes commLit{
+  0%{ opacity:0; transform:scale(.5) }
+  22%{ opacity:.85 }
+  70%,100%{ opacity:0; transform:scale(1.5) }
+}
+.h4-hosp .pad{
+  fill:rgba(95,220,236,.14); stroke:var(--lume); stroke-width:1.3;
+  filter:drop-shadow(0 0 12px rgba(95,220,236,.5));
+}
+.h4-hosp .cross{ stroke:var(--lume); stroke-width:2.6; stroke-linecap:round; }
+.h4-hosp{ opacity:0; transform-box:fill-box; transform-origin:center; }
+.h4-place{ opacity:0; }
+.pane.active .h4-place{ animation:fadeUp .8s var(--ease) 1.5s forwards; }
+.pane.active .h4-hosp{ animation:popIn .8s var(--ease) 1s forwards; }
+
+/* ── contact ──────────────────────────────────────────────────────── */
+
+.contact{
+  position:relative; z-index:2;
+  padding:5.5rem clamp(1.2rem,5vw,4rem) 1rem;
+  scroll-margin-top:5rem;
+}
+.contact-inner{ max-width:760px; margin:0 auto; text-align:center; }
+.contact h2{
+  margin:0 0 .5rem;
+  font-size:clamp(1.9rem,4vw,2.9rem);
+  color:var(--cream);
+}
+.contact-lede{
+  margin:0 auto 2.2rem; max-width:44ch;
+  color:var(--soft); font-size:.95rem;
+}
+.contact-cards{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.8rem; text-align:left;
+}
+.contact-cards .reveal:nth-child(2){ transition-delay:.08s; }
+
+.ccard{
+  display:flex; align-items:center; gap:.85rem;
+  padding:1rem 1.15rem;
+  border:1px solid var(--glass-edge);
+  border-radius:16px;
+  background:linear-gradient(150deg, var(--glass-bg), var(--glass-bg-2));
+  backdrop-filter:blur(18px) saturate(1.5);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 10px 30px rgba(2,8,22,.35);
+  text-decoration:none; color:var(--text);
+  transition:transform .35s var(--ease), border-color .35s var(--ease),
+             background .35s var(--ease);
+}
+.ccard:hover{
+  transform:translateY(-2px);
+  border-color:rgba(150,225,245,.42);
+  background:rgba(95,220,236,.075);
+}
+.ccard-ico{
+  flex:0 0 auto;
+  display:grid; place-items:center;
+  width:40px; height:40px; border-radius:11px;
+  border:1px solid var(--glass-edge-2);
+  background:rgba(95,220,236,.09);
+  color:var(--lume);
+}
+.ccard-t{ min-width:0; flex:1 1 auto; }
+.ccard-k{
+  display:block; font-size:.665rem; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--cyan);
+}
+.ccard-v{
+  display:block; margin-top:.12rem;
+  font-size:.855rem; color:var(--soft);
+  overflow-wrap:anywhere;
+}
+.ccard-go{ flex:0 0 auto; opacity:.45; transition:opacity .3s var(--ease), transform .3s var(--ease); }
+.ccard:hover .ccard-go{ opacity:.9; transform:translateX(2px); }
+
+.contact-alt{
+  margin:1.5rem 0 0;
+  font-size:.79rem; color:var(--muted);
+}
+
 /* ── footer ───────────────────────────────────────────────────── */
 
 .foot{
-  padding:5rem clamp(1.2rem,5vw,4rem) 4rem;
-  border-top:1px solid rgba(150,200,240,.07);
+  padding:3.5rem clamp(1.2rem,5vw,4rem) 3rem;
 }
 .foot-inner{ max-width:1160px; margin:0 auto; text-align:center; }
 .foot-lede{
-  margin:0 0 .7rem;
+  margin:0 0 .6rem;
   font-family:var(--serif); font-size:clamp(1.35rem,3vw,1.95rem);
   color:var(--cream);
 }
-.foot-mail{
-  display:inline-block; margin-bottom:1.8rem;
-  color:var(--lume); text-decoration:none;
-  border-bottom:1px solid rgba(143,237,247,.3);
-  padding-bottom:2px;
-  transition:border-color .3s var(--ease);
-}
-.foot-mail:hover{ border-color:var(--lume); }
 .copy-mail{
   appearance:none; cursor:pointer;
   margin-left:.6rem; padding:.18rem .55rem;
@@ -970,6 +1080,7 @@ h1 em{
 @media (max-width:520px){
   body{ font-size:15px; }
   .stats{ grid-template-columns:1fr; }
+  .contact-cards{ grid-template-columns:1fr; }
   .topnav{ gap:1rem; }
   .work-head h2{ font-size:1.55rem; }
 }

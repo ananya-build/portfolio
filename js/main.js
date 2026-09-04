@@ -203,6 +203,51 @@
     });
   });
 
+  /* ── copy the address ───────────────────────────────────────────
+     mailto: does nothing at all for anyone on webmail with no desktop
+     mail client, so give them something that always works. */
+
+  $$('.copy-mail').forEach(function (btn) {
+    var addr = btn.dataset.copy;
+
+    function flash(word) {
+      var was = btn.dataset.label || btn.textContent;
+      btn.dataset.label = was;
+      btn.textContent = word;
+      btn.classList.add('done');
+      setTimeout(function () {
+        btn.textContent = btn.dataset.label;
+        btn.classList.remove('done');
+      }, 1800);
+    }
+
+    // works without the async Clipboard API, and without a secure context
+    function legacyCopy() {
+      var t = document.createElement('textarea');
+      t.value = addr;
+      t.setAttribute('readonly', '');
+      t.style.position = 'fixed';
+      t.style.top = '-1000px';
+      document.body.appendChild(t);
+      t.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(t);
+      flash(ok ? 'copied' : addr);
+    }
+
+    btn.addEventListener('click', function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(
+          function () { flash('copied'); },
+          legacyCopy                       // permission denied, or not secure
+        );
+      } else {
+        legacyCopy();
+      }
+    });
+  });
+
   /* ── land on the most recent project ────────────────────────── */
 
   function init() {

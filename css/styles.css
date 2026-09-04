@@ -461,11 +461,12 @@ h1 em{
 .pane-body.wide{ grid-template-columns:minmax(0,1fr); }
 .pane-body.wide .text-cols{
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
   gap:0 clamp(1.4rem,3vw,2.6rem);
   align-items:start;
 }
 .pane-body.wide .text-cols .notes{ margin-top:0; }
+.pane-body.wide .col-b .tabs{ margin-top:1.1rem; }
 .pane-body.wide .tabs{ margin-top:0; }
 
 .pane-text > p:first-child{
@@ -485,13 +486,92 @@ h1 em{
   background:rgba(95,220,236,.5);
 }
 
+/* awards read as their own object, not as another paragraph of body text */
 .award{
-  display:flex; align-items:flex-start; gap:.5rem;
-  margin:1.15rem 0 0;
-  font-size:.83rem; color:var(--lume);
+  display:flex; align-items:flex-start; gap:.55rem;
+  margin:.85rem 0 0;
+  padding:.6rem .8rem;
+  border:1px solid rgba(240,230,216,.20);
+  border-left:2px solid rgba(240,230,216,.55);
+  border-radius:4px 12px 12px 4px;
+  background:linear-gradient(100deg, rgba(240,230,216,.075), rgba(240,230,216,.02) 70%);
+  font-size:.815rem; color:rgba(240,230,216,.78);
   line-height:1.5;
 }
-.award svg{ flex:0 0 auto; margin-top:.28em; opacity:.85; }
+.award b{ color:var(--cream); font-weight:600; }
+.award svg{ flex:0 0 auto; margin-top:.22em; opacity:.75; color:var(--cream); }
+.award + .award{ margin-top:.5rem; }
+
+/* one marked phrase per project — the thing the work actually is */
+.hl{
+  color:var(--lume);
+  font-weight:500;
+  background:rgba(95,220,236,.13);
+  border-radius:4px;
+  padding:.08em .22em;
+  margin:0 -.18em;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+
+/* the classification report, straight off the confusion matrices */
+.report{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.735rem;
+  font-variant-numeric:tabular-nums;
+}
+.report th, .report td{ padding:.24rem .3rem; text-align:right; }
+.report thead th{
+  font-weight:500; font-size:.66rem;
+  letter-spacing:.07em; text-transform:uppercase;
+  color:var(--muted);
+  border-bottom:1px solid var(--glass-edge-2);
+  padding-bottom:.34rem;
+}
+.report tbody th, .report tfoot th{
+  text-align:left; font-weight:400; color:var(--soft);
+}
+.report td{ color:var(--text); }
+.report tfoot .rule th, .report tfoot .rule td{
+  border-top:1px solid var(--glass-edge-2);
+  padding-top:.42rem;
+}
+.report tfoot th{ color:var(--muted); font-size:.7rem; }
+.report tfoot td{ color:var(--lume); }
+
+/* the pipeline diagram, simplified from Ananya's own figure */
+.flow{ margin:0; }
+.flow figcaption{
+  margin-bottom:.5rem;
+  font-size:.66rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted);
+}
+.flow svg{
+  display:block; width:100%; height:auto;
+  border-radius:14px;
+  border:1px solid var(--glass-edge-2);
+  background:rgba(4,11,26,.4);
+  padding:.4rem 0;
+}
+.fl-edges path{ fill:none; stroke:rgba(130,180,225,.34); stroke-width:1; marker-end:url(#fa); }
+.fl-edges path.plain{ marker-end:none; }
+#fa path{ fill:rgba(150,200,235,.7); }
+.fl-node rect{ stroke-width:1; }
+.fl-node text{
+  font-family:var(--sans); font-size:6.4px; font-weight:600;
+  letter-spacing:.055em; text-anchor:middle; fill:var(--text);
+}
+.fl-node text.sub{
+  font-weight:400; font-size:5.9px; letter-spacing:.02em;
+  fill:var(--muted); text-transform:none;
+}
+.fl-node.data rect{ fill:rgba(150,190,230,.08); stroke:rgba(160,205,240,.34); }
+.fl-node.model rect{ fill:rgba(95,220,236,.10); stroke:rgba(95,220,236,.42); }
+.fl-node.weights rect{ fill:rgba(46,111,224,.16); stroke:rgba(120,175,240,.5); }
+.fl-node.stage rect{ fill:rgba(46,111,224,.10); stroke:rgba(120,175,240,.34); }
+.fl-node.out rect{ fill:rgba(240,230,216,.10); stroke:rgba(240,230,216,.4); }
+.fl-node.out text{ fill:var(--cream); }
 
 /* stat tiles — the brief asked for the numbers to stand apart */
 .stats{
@@ -545,20 +625,16 @@ h1 em{
   color:var(--lume);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
 }
-.tabpanes{ position:relative; margin-top:.7rem; min-height:3.1rem; }
+.tabpanes{ position:relative; margin-top:.7rem; min-height:11.6rem; }
 .tabpane{
   position:absolute; inset:0;
-  display:flex; align-items:baseline; gap:.55rem;
+  display:block;
   opacity:0; transform:translateY(6px);
   transition:opacity .4s var(--ease), transform .4s var(--ease);
   pointer-events:none;
 }
 .tabpane.is-on{ opacity:1; transform:none; }
-.tabpane b{
-  font-family:var(--serif); font-weight:400; font-size:2rem; line-height:1;
-  color:var(--lume);
-}
-.tabpane span{ font-size:.78rem; color:var(--muted); }
+
 
 /* arrows */
 .arrow{
@@ -782,9 +858,20 @@ h1 em{
 .oct-pulses circle{ fill:var(--lume); filter:drop-shadow(0 0 5px rgba(143,237,247,.9)); }
 
 .oct-brain .brain-outline{
-  fill:rgba(10,26,56,.55); stroke:rgba(160,205,240,.4); stroke-width:1.3;
+  fill:rgba(9,24,52,.62); stroke:rgba(170,212,244,.46); stroke-width:1.3;
 }
-.oct-brain .brain-folds path{ fill:none; stroke:rgba(143,237,247,.4); stroke-width:1; }
+.oct-brain .brain-folds path{ fill:none; stroke:rgba(143,237,247,.34); stroke-width:.9; stroke-linecap:round; }
+/* the lateral fissure, deeper than the surrounding gyri */
+.oct-brain .brain-fissure{ fill:none; stroke:rgba(190,235,250,.5); stroke-width:1.2; stroke-linecap:round; }
+.oct-brain .cerebellum .cb-body{
+  fill:rgba(7,20,46,.85); stroke:rgba(170,212,244,.44); stroke-width:1.2;
+}
+.oct-brain .cerebellum path:not(.cb-body){
+  fill:none; stroke:rgba(143,237,247,.34); stroke-width:.85; stroke-linecap:round;
+}
+.oct-brain .brainstem{
+  fill:none; stroke:rgba(170,212,244,.46); stroke-width:1.5; stroke-linecap:round;
+}
 .pane.active .oct-brain{ animation:brainLight 4.2s var(--ease) infinite; }
 @keyframes brainLight{
   0%,100%{ filter:none; opacity:.82 }
@@ -811,6 +898,17 @@ h1 em{
   transition:border-color .3s var(--ease);
 }
 .foot-mail:hover{ border-color:var(--lume); }
+.copy-mail{
+  appearance:none; cursor:pointer;
+  margin-left:.6rem; padding:.18rem .55rem;
+  border:1px solid var(--glass-edge-2); border-radius:999px;
+  background:transparent; color:var(--muted);
+  font-family:inherit; font-size:.7rem;
+  transition:color .3s var(--ease), border-color .3s var(--ease);
+  vertical-align:middle;
+}
+.copy-mail:hover{ color:var(--lume); border-color:rgba(143,237,247,.4); }
+.copy-mail.done{ color:var(--lume); border-color:rgba(143,237,247,.5); }
 .foot-fine{ margin:0; font-size:.75rem; color:var(--muted); }
 .foot-fine a{ color:var(--muted); }
 .foot-fine a:hover{ color:var(--soft); }

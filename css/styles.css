@@ -344,7 +344,8 @@ h1 em{
   display:grid; grid-template-columns:repeat(5,1fr);
 }
 .rail-nodes button{
-  appearance:none; background:none; border:0; padding:0;
+  appearance:none; background:none; border:0;
+  padding:7px 0; margin:-7px 0;
   display:flex; flex-direction:column; align-items:flex-start; gap:.42rem;
   width:100%; cursor:pointer;
   color:var(--muted);
@@ -353,10 +354,10 @@ h1 em{
 }
 .rail-nodes li:last-child button{ align-items:flex-end; text-align:right; }
 .rail-nodes .dot{
-  width:9px; height:9px; border-radius:50%;
+  width:14px; height:14px; border-radius:50%;
   background:var(--abyss);
-  border:1px solid rgba(150,200,240,.34);
-  margin-top:3px;
+  border:1.5px solid rgba(150,200,240,.42);
+  margin-top:1px;            /* keeps the centre on the rail line */
   transition:all .45s var(--ease);
 }
 .rail-nodes .yr{
@@ -364,14 +365,19 @@ h1 em{
   letter-spacing:.09em; text-transform:uppercase; font-size:.685rem;
 }
 .rail-nodes .nm{ font-size:.79rem; color:var(--slate); transition:color .4s var(--ease); }
-.rail-nodes button:hover .dot{ border-color:var(--cyan); transform:scale(1.15); }
+.rail-nodes button:hover .dot{
+  border-color:var(--cyan);
+  background:rgba(95,220,236,.16);
+  transform:scale(1.22);
+  box-shadow:0 0 0 5px rgba(95,220,236,.10);
+}
 .rail-nodes button:hover, .rail-nodes button:hover .nm{ color:var(--soft); }
 
 .rail-nodes button[aria-current="true"]{ color:var(--lume); }
 .rail-nodes button[aria-current="true"] .dot{
   background:var(--cyan); border-color:var(--lume);
-  box-shadow:0 0 0 4px rgba(95,220,236,.14), 0 0 16px rgba(95,220,236,.75);
-  transform:scale(1.2);
+  box-shadow:0 0 0 6px rgba(95,220,236,.15), 0 0 18px rgba(95,220,236,.8);
+  transform:scale(1.15);
 }
 .rail-nodes button[aria-current="true"] .nm{ color:var(--text); }
 

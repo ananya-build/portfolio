@@ -839,11 +839,30 @@ h1 em{
 .cf-dial .dial-track{ fill:none; stroke:rgba(130,180,225,.18); stroke-width:5; }
 .cf-dial .dial-arc{
   stroke-width:5; stroke-linecap:round;
-  stroke-dasharray:289; stroke-dashoffset:289;
+  stroke-dasharray:252; stroke-dashoffset:252;
   filter:drop-shadow(0 0 8px rgba(95,220,236,.5));
 }
-.pane.active .cf-dial .dial-arc{ animation:dial 2.4s var(--ease) 2.2s forwards; }
-@keyframes dial{ to{ stroke-dashoffset:96 } }
+.pane.active .cf-dial .dial-arc{ animation:dial 2.4s var(--ease) 2.7s forwards; }
+@keyframes dial{ to{ stroke-dashoffset:84 } }
+
+/* the model itself, sitting between the extracted features and the readout */
+.cf-model .mdl-box{
+  fill:rgba(95,220,236,.09); stroke:rgba(95,220,236,.45); stroke-width:1.2;
+}
+.cf-model .mdl-net path{ fill:none; stroke:rgba(150,205,240,.42); stroke-width:.8; }
+.cf-model .mdl-net circle{ fill:rgba(150,205,240,.6); }
+.cf-model .mdl-net .out{ fill:var(--lume); }
+.cf-model{ opacity:0; transform-box:fill-box; transform-origin:center; }
+.cf-mdl-label{ opacity:0; }
+.pane.active .cf-mdl-label{ animation:fadeUp .7s var(--ease) 2.2s forwards; }
+.pane.active .cf-model{
+  animation:popIn .7s var(--ease) 1.9s forwards,
+            mdlBeat 3.6s var(--ease) 2.6s infinite;
+}
+@keyframes mdlBeat{
+  0%,100%{ filter:none }
+  26%,48%{ filter:drop-shadow(0 0 9px rgba(95,220,236,.6)) }
+}
 
 /* ····· Dine-Mine ····· */
 .dn-grid path{ fill:none; stroke:rgba(130,180,225,.09); stroke-width:1; }
@@ -1211,8 +1230,8 @@ h1 em{
   .ms-edges path{ stroke-dashoffset:0; }
   .oct-signal path{ stroke-dashoffset:0; }
   .cf-tube .tube-fill{ transform:none; }
-  .cf-frags,.cf-dial .dial-label,.dn-card,.dn-badge,.dn-rings .ring-fill{ opacity:1; }
-  .cf-dial .dial-arc{ stroke-dashoffset:96; }
+  .cf-frags,.cf-model,.cf-mdl-label,.dn-card,.dn-badge,.dn-rings .ring-fill{ opacity:1; }
+  .cf-dial .dial-arc{ stroke-dashoffset:84; }
   .ms-trials rect,.dn-pins .pin{ opacity:1; }
   .dn-pins .miss{ opacity:.28 !important; }
 }

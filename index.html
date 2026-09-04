@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=202609040920">
+<link rel="stylesheet" href="css/styles.css?v=202609040934">
 </head>
 <body>
 
@@ -572,11 +572,11 @@
                 <!-- 3 · parallel lanes -->
                 <g class="cf-lanes">
                   <g class="lane-rails">
-                    <line x1="146" y1="70"  x2="308" y2="70"/>
-                    <line x1="146" y1="102" x2="308" y2="102"/>
-                    <line x1="146" y1="134" x2="308" y2="134"/>
-                    <line x1="146" y1="166" x2="308" y2="166"/>
-                    <line x1="146" y1="198" x2="308" y2="198"/>
+                    <line x1="146" y1="70"  x2="256" y2="70"/>
+                    <line x1="146" y1="102" x2="256" y2="102"/>
+                    <line x1="146" y1="134" x2="256" y2="134"/>
+                    <line x1="146" y1="166" x2="256" y2="166"/>
+                    <line x1="146" y1="198" x2="256" y2="198"/>
                   </g>
                   <g class="lane-packets">
                     <rect y="66"  width="16" height="8" rx="2"/>
@@ -585,13 +585,31 @@
                     <rect y="162" width="16" height="8" rx="2"/>
                     <rect y="194" width="16" height="8" rx="2"/>
                   </g>
-                  <text class="tiny" x="227" y="234">parallel extraction</text>
+                  <text class="tiny" x="201" y="234">parallel extraction</text>
                 </g>
 
-                <!-- 4 · probability dial -->
-                <g class="cf-dial" transform="translate(382 128)">
-                  <circle class="dial-track" r="46"/>
-                  <circle class="dial-arc" r="46" fill="none" stroke="url(#dial-g)" transform="rotate(-90)"/>
+                <!-- 4 · the model -->
+                <g transform="translate(300 128)">
+                  <g class="cf-model">
+                  <rect class="mdl-box" x="-29" y="-29" width="58" height="58" rx="13"/>
+                  <g class="mdl-net">
+                    <path d="M-15 -14 L0 -7 M-15 -14 L0 7 M-15 0 L0 -7 M-15 0 L0 7
+                             M-15 14 L0 -7 M-15 14 L0 7 M0 -7 L15 0 M0 7 L15 0"/>
+                    <circle cx="-15" cy="-14" r="2.6"/>
+                    <circle cx="-15" cy="0"   r="2.6"/>
+                    <circle cx="-15" cy="14"  r="2.6"/>
+                    <circle cx="0"   cy="-7"  r="2.6"/>
+                    <circle cx="0"   cy="7"   r="2.6"/>
+                    <circle class="out" cx="15" cy="0" r="3.2"/>
+                  </g>
+                  </g>
+                  <text class="tiny cf-mdl-label" y="106">MIL model</text>
+                </g>
+
+                <!-- 5 · probability dial -->
+                <g class="cf-dial" transform="translate(396 128)">
+                  <circle class="dial-track" r="40"/>
+                  <circle class="dial-arc" r="40" fill="none" stroke="url(#dial-g)" transform="rotate(-90)"/>
                   <text class="tiny" y="106">cancer probability</text>
                 </g>
               </svg>
@@ -599,6 +617,10 @@
 
 
 
+              <ul class="notes">
+                <li>Designed the <b>parallel computing algorithm</b> that extracts those
+                    features across the High Performance Computing cluster.</li>
+              </ul>
               <!-- how the MIL model reads one sample -->
               <figure class="flow mil">
                 <figcaption>Attention-based multiple instance learning</figcaption>
@@ -671,9 +693,9 @@
                 </div>
               </figure>
               <ul class="notes">
-                <li>Designed the <b>parallel computing algorithm</b> that extracts those
-                    features across the High Performance Computing cluster.</li>
+                <li>The model is <b>structurally aware</b> and <b>data efficient</b>.</li>
               </ul>
+
             </div>
 
             <div class="pane-text">
@@ -945,11 +967,11 @@
 <footer class="foot">
   <div class="foot-inner">
     <p class="foot-lede">Thanks for making it all the way through.</p>
-    <p class="foot-fine">Crafted by a human (It’s me, I’m the human). · <a href="#top">back to the top</a></p>
+    <p class="foot-fine">Crafted by a human (It’s me, Ananya, I’m the human). · <a href="#top">back to the top</a></p>
   </div>
 </footer>
 
-<script src="js/water.js?v=202609040920" defer></script>
-<script src="js/main.js?v=202609040920" defer></script>
+<script src="js/water.js?v=202609040934" defer></script>
+<script src="js/main.js?v=202609040934" defer></script>
 </body>
 </html>

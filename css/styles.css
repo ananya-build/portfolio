@@ -518,10 +518,14 @@ h1 em{
 .col-a .award{ margin-top:1rem; }
 .pane-body.wide .tabs{ margin-top:0; }
 
-.pane-text > p:first-child{
+/* Robo Dojo leads with its award, so its opening paragraph is the second
+   child — both selectors mean "the paragraph that opens the column" */
+.pane-text > p:first-child,
+.pane-text > .award:first-child + p{
   margin:0 0 1.1rem;
   font-size:.965rem; color:var(--soft);
 }
+.pane-text > .award:first-child{ margin-top:0; }
 .pane-text b{ color:var(--text); font-weight:600; }
 
 .notes{

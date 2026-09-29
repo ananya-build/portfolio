@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=202609290832">
+<link rel="stylesheet" href="css/styles.css?v=202609290949">
 </head>
 <body>
 
@@ -1031,24 +1031,24 @@
             </div>
 
             <div class="pane-text">
-              <p>
-                Four Claude agents get the same task, the same seed and a <b>MuJoCo</b> arm.
-                Each writes <b>run(robot)</b>, watches what the physics did with it, and
-                revises. What separates the racers isn’t the model — <span class="hl">it’s
-                what they remember</span>. We built that memory, and the dojo you watch it in.
-              </p>
-
-              <p>
-                The extraction service refuses a trace with no verified postcondition —
-                <b>no_postcondition, prefilter</b>, hit live while building. So only a landed
-                attempt is ever ingested, and the misses ride along inside the winning trace as
-                the dead ends it had to walk first.
-              </p>
-
               <p class="award">
                 <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l2.6 5.6L21 9.5l-4.5 4.3 1.1 6.2L12 17l-5.6 3 1.1-6.2L3 9.5l6.4-.9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
                 <span><b>Top three in the Memorable track</b>, among roughly <b>225 hackers</b>
                 at the YC Own Your Intelligence Hackathon.</span>
+              </p>
+
+              <p>
+                Four Claude agents get the same task, the same seed and a <b>MuJoCo</b> arm.
+                Each writes <b>run(robot)</b>, reads back what the physics did, and revises.
+                What separates them isn’t the model — <span class="hl">it’s what they
+                remember</span>. We built that memory, and the dojo you watch it in.
+              </p>
+
+              <p>
+                Memorable’s extractor refuses a trace with no verified postcondition
+                (<b>no_postcondition, prefilter</b>, hit live while building), so only a landed
+                attempt is ingested — the misses ride inside the winning trace as the dead ends
+                it had to walk first.
               </p>
 
               <div class="stats">
@@ -1119,7 +1119,7 @@
   </div>
 </footer>
 
-<script src="js/water.js?v=202609290832" defer></script>
-<script src="js/main.js?v=202609290832" defer></script>
+<script src="js/water.js?v=202609290949" defer></script>
+<script src="js/main.js?v=202609290949" defer></script>
 </body>
 </html>

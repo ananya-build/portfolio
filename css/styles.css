@@ -341,7 +341,9 @@ h1 em{
 .rail-nodes{
   position:relative;
   list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns:repeat(5,1fr);
+  /* one equal column per node, however many there are — a fixed count here
+     wraps the extra node onto a second row the moment a project is added */
+  display:grid; grid-auto-flow:column; grid-auto-columns:1fr;
 }
 .rail-nodes button{
   appearance:none; background:none; border:0;

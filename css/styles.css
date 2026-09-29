@@ -1092,6 +1092,86 @@ h1 em{
 .mil-score{ opacity:0; }
 .pane.active .mil-score{ animation:fadeUp .7s var(--ease) 3.5s forwards; }
 
+/* ····· Robo Dojo ····· */
+.rd-floor{ fill:none; stroke:rgba(130,180,225,.16); stroke-width:1; }
+.rd-base{ fill:rgba(150,200,235,.08); stroke:rgba(160,205,240,.34); stroke-width:1.1; }
+.rd-arm{
+  fill:none; stroke:rgba(150,200,240,.5); stroke-width:2.4;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.rd-arm.grip{ stroke-width:1.6; }
+.rd-bin path{ fill:rgba(150,200,235,.06); stroke:rgba(160,205,240,.34); stroke-width:1.2; }
+.rd-bin .rim{ stroke:rgba(95,220,236,.5); }
+
+.rd-arc{
+  fill:none; stroke:rgba(95,220,236,.32); stroke-width:1;
+  stroke-dasharray:var(--len,320); stroke-dashoffset:var(--len,320);
+}
+.pane.active .rd-arc{ animation:draw 1.3s var(--ease) .3s forwards; }
+
+/* the can rides the arc — the arc itself is drawn once, this repeats */
+.rd-can rect{ fill:rgba(95,220,236,.45); stroke:#8FEDF7; stroke-width:1; }
+.rd-can{ opacity:0; }
+.pane.active .rd-can{ animation:rdToss 4.6s var(--ease) 1.4s infinite; }
+@keyframes rdToss{
+  0%{ transform:none; opacity:0 }
+  6%{ opacity:1 }
+  26%{ transform:translate(58px,-44px) }
+  50%{ transform:translate(122px,-54px) }
+  74%{ transform:translate(180px,-22px) }
+  88%,95%{ transform:translate(224px,34px); opacity:1 }
+  100%{ transform:translate(224px,34px); opacity:0 }
+}
+.pane.active .rd-bin .rim{ animation:rdLand 4.6s var(--ease) 1.4s infinite; }
+@keyframes rdLand{
+  0%,84%{ filter:none }
+  89%,94%{ filter:drop-shadow(0 0 8px rgba(95,220,236,.8)) }
+  100%{ filter:none }
+}
+
+/* the ledger: three races, and the try each one solved on */
+/* more labels in less room than the other scenes carry — a size up so the
+   row names stay readable once the scene is scaled into the pane */
+.rd-ledger text.tiny{ font-size:9.5px; letter-spacing:.1em; }
+.rd-lab{ text-anchor:end !important; }
+.rd-dot{
+  fill:rgba(12,32,64,.85); stroke:rgba(130,180,225,.3); stroke-width:1.1;
+  opacity:0; transform-box:fill-box; transform-origin:center;
+}
+.pane.active .rd-dot{ animation:popIn .5s var(--ease) var(--d,0s) forwards; }
+/* tries the race never needed once memory had warmed up */
+.rd-dot.off{ stroke-dasharray:3 3; }
+.pane.active .rd-dot.off{ animation:fadeDim .5s var(--ease) var(--d,0s) forwards; }
+@keyframes fadeDim{ from{ opacity:0 } to{ opacity:.3 } }
+.rd-dot.win{ fill:rgba(95,220,236,.28); stroke:var(--lume); }
+.pane.active .rd-dot.win{
+  animation:popIn .5s var(--ease) var(--d,0s) forwards,
+            winLit 3.6s var(--ease) 2.4s infinite;
+}
+@keyframes winLit{
+  0%,100%{ filter:none }
+  28%,52%{ filter:drop-shadow(0 0 8px rgba(95,220,236,.7)) }
+}
+
+.rd-feed path{
+  fill:none; stroke:rgba(130,180,225,.34); stroke-width:1; marker-end:url(#rda);
+  stroke-dasharray:var(--len,44); stroke-dashoffset:var(--len,44);
+}
+.pane.active .rd-feed path{ animation:draw .8s var(--ease) var(--d,1.9s) forwards; }
+#rda path{ fill:rgba(150,200,235,.7); }
+
+.rd-card rect{ fill:rgba(150,200,235,.06); stroke:rgba(160,205,240,.26); stroke-width:1; }
+.rd-card{ opacity:0; }
+.pane.active .rd-card{ animation:fadeUp .7s var(--ease) 1.2s forwards; }
+.rd-lines rect{ fill:rgba(130,180,225,.3); opacity:0; }
+.pane.active .rd-lines rect{ animation:fadeUp .6s var(--ease) var(--d,2.1s) forwards; }
+/* what memory hands back to the next race */
+.rd-loop{
+  fill:none; stroke:rgba(95,220,236,.4); stroke-width:1; stroke-dasharray:4 4;
+  marker-end:url(#rda); opacity:0;
+}
+.pane.active .rd-loop{ animation:fadeUp .8s var(--ease) 3.2s forwards; }
+
 /* ── contact ──────────────────────────────────────────────────────── */
 
 .contact{
@@ -1233,5 +1313,9 @@ h1 em{
   .cf-frags,.cf-model,.cf-mdl-label,.dn-card,.dn-badge,.dn-rings .ring-fill{ opacity:1; }
   .cf-dial .dial-arc{ stroke-dashoffset:84; }
   .ms-trials rect,.dn-pins .pin{ opacity:1; }
+  .rd-arc,.rd-feed path{ stroke-dashoffset:0; }
+  .rd-card,.rd-lines rect,.rd-dot,.rd-loop{ opacity:1; }
+  .rd-dot.off{ opacity:.3 !important; }
+  .rd-can{ opacity:1; transform:translate(224px,34px); }
   .dn-pins .miss{ opacity:.28 !important; }
 }

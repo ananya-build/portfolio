@@ -1,6 +1,6 @@
 # My portfolio
 
-One page: a hello, five projects on a timeline you can swipe through, and a way
+One page: a hello, six projects on a timeline you can swipe through, and a way
 to reach me.
 
 **Live:** https://ananya-build.github.io/portfolio/
@@ -10,7 +10,7 @@ to reach me.
 No framework, no build step, nothing to install. Open `index.html` and it runs.
 
 ```
-index.html        every word on the site. The five projects are plain HTML
+index.html        every word on the site. The six projects are plain HTML
                   rather than data in a config file — I'd rather edit prose
 css/styles.css    the palette, the glass panes, and all the scene animations
 js/water.js       the moving light on the background

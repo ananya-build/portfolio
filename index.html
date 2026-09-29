@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ananya Pradhan</title>
-<meta name="description" content="Projects I’ve been obsessed with over the past few years — clinical trial matching, early cancer detection from cfDNA, a nonprofit hospital in Uganda, private dining research, and Alzheimer’s detection from eye scans.">
+<meta name="description" content="Projects I’ve been obsessed with over the past few years — clinical trial matching, early cancer detection from cfDNA, a nonprofit hospital in Uganda, private dining research, Alzheimer’s detection from eye scans, and LLM agents racing to control a robot arm.">
 <meta name="author" content="Ananya Pradhan">
 <meta name="theme-color" content="#050A18">
 
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=202609040934">
+<link rel="stylesheet" href="css/styles.css?v=202609290011">
 </head>
 <body>
 
@@ -81,7 +81,7 @@
 <section class="work" id="work">
 
   <div class="work-head">
-    <h2>Five projects I couldn’t stop thinking about</h2>
+    <h2>Six projects I couldn’t stop thinking about</h2>
     <p class="work-sub">Swipe through them at your own pace, or click a year to jump straight there.</p>
   </div>
 
@@ -113,6 +113,11 @@
         <span class="dot" aria-hidden="true"></span>
         <span class="yr">2026–now</span>
         <span class="nm">MOSAIC</span>
+      </button></li>
+      <li><button type="button" data-go="5" aria-controls="p-dojo">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="yr">Sept 2026</span>
+        <span class="nm">Robo Dojo</span>
       </button></li>
     </ol>
   </nav>
@@ -919,6 +924,149 @@
       </article>
 
 
+
+      <!-- ══════════ 6 · ROBO DOJO ══════════ -->
+      <article class="pane" id="p-dojo" data-scene="dojo" data-hue="212">
+        <div class="pane-glass">
+          <header class="pane-head">
+            <span class="pane-year">Sept 2026</span>
+            <h3>Robo Dojo</h3>
+            <p class="pane-meta">
+              Four LLM agents race to put the trash in the bin · YC Own Your Intelligence
+              Hackathon · a team of four
+            </p>
+          </header>
+
+          <div class="pane-body">
+            <div class="col-left">
+            <div class="scene" data-scene-host="dojo">
+              <svg viewBox="0 0 460 260" class="scene-svg" role="img"
+                   aria-label="A robot arm tosses a can along an arc into a bin. Below, three races in a row: the first lands it on the third try, the next on the second, the last on the first — each writing its winner into a memory card that feeds the race after it.">
+                <defs>
+                  <marker id="rda" viewBox="0 0 8 8" refX="6.4" refY="4"
+                          markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0 1 L6.4 4 L0 7 z"/>
+                  </marker>
+                </defs>
+
+                <path class="rd-floor" d="M34 142 H424"/>
+
+                <g class="rd-bin">
+                  <path d="M344 108 L350 142 L402 142 L408 108"/>
+                  <path class="rim" d="M338 108 H414"/>
+                </g>
+
+                <rect class="rd-base" x="58" y="126" width="28" height="16" rx="4"/>
+                <path class="rd-arm" d="M72 126 L104 82 L148 96"/>
+                <path class="rd-arm grip" d="M143 89 l9 3 M143 103 l9 -3"/>
+
+                <path class="rd-arc" d="M152 92 C212 30, 296 32, 372 108"/>
+
+                <g transform="translate(152 92)"><g class="rd-can">
+                  <rect x="-5" y="-7" width="10" height="14" rx="3"/>
+                </g></g>
+
+                <text class="tiny" x="104" y="160">agent code</text>
+
+                <g class="rd-ledger">
+                  <text class="tiny rd-lab" x="136" y="175">tries</text>
+                  <text class="tiny" x="152" y="175">1</text>
+                  <text class="tiny" x="192" y="175">2</text>
+                  <text class="tiny" x="232" y="175">3</text>
+
+                  <text class="tiny rd-lab" x="136" y="193">race 001</text>
+                  <text class="tiny rd-lab" x="136" y="215">race 002</text>
+                  <text class="tiny rd-lab" x="136" y="237">race 006</text>
+
+                  <circle class="rd-dot"     cx="152" cy="190" r="6.5" style="--d:.90s"/>
+                  <circle class="rd-dot"     cx="192" cy="190" r="6.5" style="--d:1.00s"/>
+                  <circle class="rd-dot win" cx="232" cy="190" r="6.5" style="--d:1.10s"/>
+
+                  <circle class="rd-dot"     cx="152" cy="212" r="6.5" style="--d:1.25s"/>
+                  <circle class="rd-dot win" cx="192" cy="212" r="6.5" style="--d:1.35s"/>
+                  <circle class="rd-dot off" cx="232" cy="212" r="6.5" style="--d:1.45s"/>
+
+                  <circle class="rd-dot win" cx="152" cy="234" r="6.5" style="--d:1.60s"/>
+                  <circle class="rd-dot off" cx="192" cy="234" r="6.5" style="--d:1.70s"/>
+                  <circle class="rd-dot off" cx="232" cy="234" r="6.5" style="--d:1.80s"/>
+                </g>
+
+                <g class="rd-feed">
+                  <path d="M244 190 C262 190, 258 196, 272 196" style="--d:1.90s"/>
+                  <path d="M244 212 C262 212, 258 210, 272 210" style="--d:2.05s"/>
+                  <path d="M244 234 C262 234, 258 224, 272 224" style="--d:2.20s"/>
+                </g>
+
+                <g class="rd-card">
+                  <rect x="276" y="164" width="150" height="80" rx="12"/>
+                  <text class="tiny" x="351" y="186">memory</text>
+                  <g class="rd-lines">
+                    <rect x="292" y="196" width="112" height="5" rx="2.5" style="--d:2.10s"/>
+                    <rect x="292" y="210" width="96"  height="5" rx="2.5" style="--d:2.25s"/>
+                    <rect x="292" y="224" width="104" height="5" rx="2.5" style="--d:2.40s"/>
+                  </g>
+                </g>
+
+                <path class="rd-loop" d="M290 248 C232 258, 158 256, 134 243"/>
+              </svg>
+            </div>
+
+
+              <ul class="notes">
+                <li>Every attempt is an <b>episode</b> — strategy, parameters, outcome, and one
+                    line on why it ended that way — recalled before the next one, so a racer
+                    improves <b>during</b> a race and not only after it.</li>
+                <li>Two calls sit in an agent's path: <b>brief</b> before the throw,
+                    <b>record</b> after. Reads <b>fail open</b> and writes fail closed — memory
+                    can slow a run down but can never take one out.</li>
+                <li>The episode log is the source of truth for numbers: append-only <b>JSONL</b>
+                    with a <b>SQLite</b> mirror for grouping. Memorable keeps the procedure;
+                    <b>GBrain</b> reads the same rows after the race to write the skill the next
+                    one starts from.</li>
+                <li>One <b>QM</b> sandbox scope is one Memorable namespace, so racers can’t read
+                    each other’s attempts mid-race.</li>
+                <li>Built the dojo itself too — the opening gate, the live mats, and the training
+                    journal, which is Memorable’s surface in the UI.</li>
+              </ul>
+            </div>
+
+            <div class="pane-text">
+              <p>
+                Four Claude agents get the same task, the same seed and a <b>MuJoCo</b> arm.
+                Each writes <b>run(robot)</b>, watches what the physics did with it, and
+                revises. What separates the racers isn’t the model — <span class="hl">it’s
+                what they remember</span>. I built that memory, and the dojo you watch it in.
+              </p>
+
+              <p>
+                The extraction service refuses a trace with no verified postcondition —
+                <b>no_postcondition, prefilter</b>, hit live while building. So only a landed
+                attempt is ever ingested, and the misses ride along inside the winning trace as
+                the dead ends it had to walk first.
+              </p>
+
+              <p class="award">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l2.6 5.6L21 9.5l-4.5 4.3 1.1 6.2L12 17l-5.6 3 1.1-6.2L3 9.5l6.4-.9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                <span><b>Top three in the Memorable track</b>, among roughly <b>225 hackers</b>
+                at the YC Own Your Intelligence Hackathon.</span>
+              </p>
+
+              <div class="stats">
+                <div class="stat accent"><b>3 → 1</b><span>tries to land the can, cold memory vs. warm</span></div>
+                <div class="stat"><b>80/80</b><span>episodes across the GBrain seam, none malformed</span></div>
+                <div class="stat"><b>42</b><span>tests, no network and no extraction spend</span></div>
+                <div class="stat"><b>2</b><span>calls an agent makes: brief, then record</span></div>
+              </div>
+
+              <a class="btn small" href="https://github.com/vivandoshi08/robodojo" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>See the code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div><!-- /stage -->
   </div><!-- /stage-wrap -->
 
@@ -971,7 +1119,7 @@
   </div>
 </footer>
 
-<script src="js/water.js?v=202609040934" defer></script>
-<script src="js/main.js?v=202609040934" defer></script>
+<script src="js/water.js?v=202609290011" defer></script>
+<script src="js/main.js?v=202609290011" defer></script>
 </body>
 </html>

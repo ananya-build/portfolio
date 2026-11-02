@@ -37,7 +37,7 @@
   /* ── the SVG edges need their real path lengths to draw ─────── */
 
   $$('.ms-edges path, .oct-signal path, .h4-links path, .mil-links path,' +
-     '.rd-arc, .rd-feed path').forEach(function (p) {
+     '.rd-arc, .rd-feed path, .s2-seller, .s2-buyer, .s2-feed').forEach(function (p) {
     try {
       var len = Math.ceil(p.getTotalLength());
       p.style.setProperty('--len', len);

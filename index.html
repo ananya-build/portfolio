@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ananya Pradhan</title>
-<meta name="description" content="Projects I’ve been obsessed with over the past few years — clinical trial matching, early cancer detection from cfDNA, a nonprofit hospital in Uganda, private dining research, Alzheimer’s detection from eye scans, and LLM agents racing to control a robot arm.">
+<meta name="description" content="Projects I’ve been obsessed with over the past few years — clinical trial matching, early cancer detection from cfDNA, a nonprofit hospital in Uganda, private dining research, Alzheimer’s detection from eye scans, LLM agents racing to control a robot arm, and a seller-side agent that negotiates with buying agents over MCP.">
 <meta name="author" content="Ananya Pradhan">
 <meta name="theme-color" content="#050A18">
 
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=202609290949">
+<link rel="stylesheet" href="css/styles.css?v=202611021406">
 </head>
 <body>
 
@@ -81,7 +81,7 @@
 <section class="work" id="work">
 
   <div class="work-head">
-    <h2>Six projects I couldn’t stop thinking about</h2>
+    <h2>Seven projects I couldn’t stop thinking about</h2>
     <p class="work-sub">Swipe through them at your own pace, or click a year to jump straight there.</p>
   </div>
 
@@ -118,6 +118,11 @@
         <span class="dot" aria-hidden="true"></span>
         <span class="yr">Sept 2026</span>
         <span class="nm">Robo Dojo</span>
+      </button></li>
+      <li><button type="button" data-go="6" aria-controls="p-s2a">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="yr">Oct 2026</span>
+        <span class="nm">sell2agent</span>
       </button></li>
     </ol>
   </nav>
@@ -1067,6 +1072,144 @@
         </div>
       </article>
 
+      <!-- ══════════ 7 · SELL2AGENT ══════════ -->
+      <article class="pane" id="p-s2a" data-scene="s2a" data-hue="220">
+        <div class="pane-glass">
+          <header class="pane-head">
+            <span class="pane-year">Oct 2026</span>
+            <h3>sell2agent</h3>
+            <p class="pane-meta">
+              An agent that sells for you, over MCP · YC Make Something Agents Want
+              Hackathon · a team of four
+            </p>
+          </header>
+
+          <div class="pane-body">
+            <div class="col-left">
+            <div class="scene" data-scene-host="s2a">
+              <svg viewBox="0 0 460 260" class="scene-svg" role="img"
+                   aria-label="A price chart. The seller’s counters step down from the list price while the buyer’s offers climb from a lowball, and the two meet at a deal of $110. A dashed floor line runs underneath them, and the shaded band below it — where the buyer’s first offer sits — is marked zero deals. An arrow carries the deal to a signed card that is charged once.">
+                <defs>
+                  <marker id="s2aa" viewBox="0 0 8 8" refX="6.4" refY="4"
+                          markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0 1 L6.4 4 L0 7 z"/>
+                  </marker>
+                </defs>
+
+                <path class="s2-axis" d="M74 26 V200 M74 200 H300"/>
+                <text class="tiny s2-lab" x="68" y="43">list $129</text>
+
+                <!-- the band a deal never lands in -->
+                <rect class="s2-band" x="74" y="164" width="226" height="34"/>
+                <path class="s2-floor" d="M74 164 H300"/>
+                <text class="tiny s2-lab" x="68" y="167">floor</text>
+                <text class="tiny s2-none" x="232" y="186">0 deals here</text>
+
+                <text class="tiny" x="152" y="28">seller counters</text>
+                <path class="s2-seller" d="M98 40 L144 58 L190 72 L236 82 L272 88"/>
+                <g class="s2-dots">
+                  <circle cx="98"  cy="40" r="4.5" style="--d:1.10s"/>
+                  <circle cx="144" cy="58" r="4.5" style="--d:1.25s"/>
+                  <circle cx="190" cy="72" r="4.5" style="--d:1.40s"/>
+                  <circle cx="236" cy="82" r="4.5" style="--d:1.55s"/>
+                </g>
+
+                <path class="s2-buyer" d="M98 190 L144 160 L190 128 L236 104 L272 88"/>
+                <g class="s2-dots">
+                  <circle class="refused" cx="98" cy="190" r="4.5" style="--d:1.10s"/>
+                  <circle cx="144" cy="160" r="4.5" style="--d:1.25s"/>
+                  <circle cx="190" cy="128" r="4.5" style="--d:1.40s"/>
+                  <circle cx="236" cy="104" r="4.5" style="--d:1.55s"/>
+                </g>
+                <text class="tiny" x="164" y="224">buyer offers</text>
+
+                <g transform="translate(272 88)"><g class="s2-deal">
+                  <circle r="8"/>
+                </g></g>
+                <text class="tiny s2-price" x="272" y="68">$110</text>
+
+                <path class="s2-feed" d="M284 88 C308 88, 304 96, 320 96"/>
+
+                <g class="s2-card">
+                  <rect x="324" y="62" width="112" height="86" rx="12"/>
+                  <text class="tiny" x="380" y="84">deal · signed</text>
+                  <g class="s2-lines">
+                    <rect x="340" y="96"  width="80" height="5" rx="2.5" style="--d:2.70s"/>
+                    <rect x="340" y="110" width="62" height="5" rx="2.5" style="--d:2.85s"/>
+                  </g>
+                  <g transform="translate(380 130)"><g class="s2-check">
+                    <circle r="10"/>
+                    <path d="M-4.2 .4 l3 3.2 5.6 -6.6"/>
+                  </g></g>
+                </g>
+                <text class="tiny s2-paid" x="380" y="166">charged once</text>
+              </svg>
+            </div>
+
+
+              <ul class="notes">
+                <li>One endpoint, <b>typed tools</b> — search, ask, offer, accept, pay — instead
+                    of a page to scrape. <b>ChatGPT</b>, <b>claude.ai</b> or <b>Codex</b> connects
+                    with a URL and no sign-in.</li>
+                <li><b>Code decides the price; Claude only says it.</b> Counters are clamped to a
+                    soft floor, and an output guard reads the sentence before it leaves — it caught
+                    <b>16</b> tries at naming a floor or cost figure.</li>
+                <li><b>ask_question</b> answers from catalog data or returns <b>grounded: false</b>.
+                    An agent can route around an honest “I don’t know”; not around a confident
+                    guess.</li>
+                <li><b>accept_deal</b> locks an <b>HMAC-signed</b> deal bound to that buyer; paying
+                    charges the stored amount, and a second call comes back <b>already_paid</b>.</li>
+                <li>Agents retry, so a restart can’t pay off: buyer memory, jittered concessions and
+                    a probe breaker mean a fresh negotiation never finds a better price.</li>
+              </ul>
+            </div>
+
+            <div class="pane-text">
+              <p class="award">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l2.6 5.6L21 9.5l-4.5 4.3 1.1 6.2L12 17l-5.6 3 1.1-6.2L3 9.5l6.4-.9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                <span><b>First place in the Armature track</b> — best agent experience — at the
+                YC Make Something Agents Want Hackathon, built in 24 hours.</span>
+              </p>
+
+              <p>
+                Commerce is built for eyes and thumbs, and the buyer is increasingly an agent that
+                scrapes a page, guesses at the specs, and takes one price or leaves it. sell2agent
+                puts an agent on the <b>seller’s</b> side: it answers from the real catalog,
+                haggles, and takes payment in one approval — inside a floor and a margin the human
+                seller sets, and <span class="hl">those limits live in code, not in a
+                prompt</span>.
+              </p>
+
+              <p>
+                We tested that before building it: a prompt-only <b>Opus</b> seller, told to hold a
+                $41,700 floor, gave it up for $28,500 after one injected line, while the same
+                attacks against the code engine broke nothing. So <b>Claude writes the words and
+                code sets the number</b>.
+              </p>
+
+              <p>
+                I built the seller’s side of the glass: the live feed and guardrail log, the deal
+                card an agent renders inside its own client, and the evals behind every number
+                here.
+              </p>
+
+              <div class="stats">
+                <div class="stat accent"><b>41% → 64%</b><span>buyers who bought, static listing vs. negotiating</span></div>
+                <div class="stat"><b>$26 → $39</b><span>profit per buyer, same 100 Claude buyers</span></div>
+                <div class="stat"><b>0 of 200</b><span>negotiations that closed below the floor</span></div>
+                <div class="stat"><b>7/7</b><span>agent-experience cases passed, on Claude Code and Codex</span></div>
+              </div>
+
+
+              <a class="btn small" href="https://github.com/vivandoshi08/sell2agent" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>See the code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div><!-- /stage -->
   </div><!-- /stage-wrap -->
 
@@ -1119,7 +1262,7 @@
   </div>
 </footer>
 
-<script src="js/water.js?v=202609290949" defer></script>
-<script src="js/main.js?v=202609290949" defer></script>
+<script src="js/water.js?v=202611021406" defer></script>
+<script src="js/main.js?v=202611021406" defer></script>
 </body>
 </html>

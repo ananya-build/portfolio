@@ -1178,6 +1178,75 @@ h1 em{
 }
 .pane.active .rd-loop{ animation:fadeUp .8s var(--ease) 3.2s forwards; }
 
+/* ····· sell2agent ····· */
+.s2-axis{ fill:none; stroke:rgba(130,180,225,.16); stroke-width:1; }
+.s2-lab{ text-anchor:end !important; }
+
+/* the price band no deal ever lands in — code clamps each counter above it */
+.s2-band{ fill:rgba(10,24,50,.5); opacity:0; }
+.pane.active .s2-band{ animation:fadeUp .7s var(--ease) .2s forwards; }
+.s2-floor{
+  fill:none; stroke:rgba(95,220,236,.42); stroke-width:1; stroke-dasharray:5 4;
+  opacity:0;
+}
+.pane.active .s2-floor{ animation:fadeUp .6s var(--ease) .35s forwards; }
+.s2-none{ opacity:0; }
+.pane.active .s2-none{ animation:fadeUp .6s var(--ease) .5s forwards; }
+
+/* the two sides closing on each other */
+.s2-seller,.s2-buyer{
+  fill:none; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:var(--len,300); stroke-dashoffset:var(--len,300);
+}
+.s2-seller{ stroke:rgba(150,200,240,.5); }
+.s2-buyer{ stroke:rgba(95,220,236,.38); }
+.pane.active .s2-seller,
+.pane.active .s2-buyer{ animation:draw 1.2s var(--ease) .5s forwards; }
+
+.s2-dots circle{
+  fill:rgba(12,32,64,.9); stroke:rgba(130,180,225,.42); stroke-width:1.1;
+  opacity:0; transform-box:fill-box; transform-origin:center;
+}
+.pane.active .s2-dots circle{ animation:popIn .5s var(--ease) var(--d,0s) forwards; }
+/* the lowball that sits under the floor, so it was never a deal */
+.s2-dots circle.refused{ stroke-dasharray:3 3; }
+
+/* where they meet: the only number that ever gets charged */
+.s2-deal circle{ fill:rgba(95,220,236,.28); stroke:var(--lume); stroke-width:1.2; }
+.s2-deal{ opacity:0; transform-box:fill-box; transform-origin:center; }
+.pane.active .s2-deal{
+  animation:popIn .55s var(--ease) 1.75s forwards,
+            dealLit 3.6s var(--ease) 2.8s infinite;
+}
+@keyframes dealLit{
+  0%,100%{ filter:none }
+  28%,52%{ filter:drop-shadow(0 0 8px rgba(95,220,236,.7)) }
+}
+.s2-price{ fill:var(--lume); opacity:0; }
+.pane.active .s2-price{ animation:fadeUp .6s var(--ease) 1.95s forwards; }
+
+.s2-feed{
+  fill:none; stroke:rgba(130,180,225,.34); stroke-width:1; marker-end:url(#s2aa);
+  stroke-dasharray:var(--len,40); stroke-dashoffset:var(--len,40);
+}
+.pane.active .s2-feed{ animation:draw .7s var(--ease) 2.15s forwards; }
+#s2aa path{ fill:rgba(150,200,235,.7); }
+
+.s2-card > rect{ fill:rgba(150,200,235,.06); stroke:rgba(160,205,240,.26); stroke-width:1; }
+.s2-card{ opacity:0; }
+.pane.active .s2-card{ animation:fadeUp .7s var(--ease) 2.4s forwards; }
+.s2-lines rect{ fill:rgba(130,180,225,.3); opacity:0; }
+.pane.active .s2-lines rect{ animation:fadeUp .6s var(--ease) var(--d,2.7s) forwards; }
+.s2-check circle{ fill:rgba(95,220,236,.2); stroke:var(--lume); stroke-width:1.1; }
+.s2-check path{
+  fill:none; stroke:var(--lume); stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.s2-check{ opacity:0; transform-box:fill-box; transform-origin:center; }
+.pane.active .s2-check{ animation:popIn .5s var(--ease) 3.2s forwards; }
+.s2-paid{ opacity:0; }
+.pane.active .s2-paid{ animation:fadeUp .6s var(--ease) 3.4s forwards; }
+
 /* ── contact ──────────────────────────────────────────────────────── */
 
 .contact{
@@ -1323,5 +1392,8 @@ h1 em{
   .rd-card,.rd-lines rect,.rd-dot,.rd-loop{ opacity:1; }
   .rd-dot.off{ opacity:.3 !important; }
   .rd-can{ opacity:1; transform:translate(224px,34px); }
+  .s2-seller,.s2-buyer,.s2-feed{ stroke-dashoffset:0; }
+  .s2-band,.s2-floor,.s2-none,.s2-dots circle,.s2-deal,.s2-price,
+  .s2-card,.s2-lines rect,.s2-check,.s2-paid{ opacity:1; }
   .dn-pins .miss{ opacity:.28 !important; }
 }

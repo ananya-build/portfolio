@@ -122,7 +122,7 @@
       <li><button type="button" data-go="6" aria-controls="p-s2a">
         <span class="dot" aria-hidden="true"></span>
         <span class="yr">Oct 2026</span>
-        <span class="nm">sell2agent</span>
+        <span class="nm">sell2agents</span>
       </button></li>
     </ol>
   </nav>
@@ -1077,10 +1077,10 @@
         <div class="pane-glass">
           <header class="pane-head">
             <span class="pane-year">Oct 2026</span>
-            <h3>sell2agent</h3>
+            <h3>sell2agents</h3>
             <p class="pane-meta">
-              An agent that sells for you, over MCP · YC Make Something Agents Want
-              Hackathon · a team of four
+              An agent that sells for you, over MCP · YC Make Something Agents Want ·
+              a team of four
             </p>
           </header>
 
@@ -1151,16 +1151,14 @@
                 <li>One endpoint, <b>typed tools</b> — search, ask, offer, accept, pay — instead
                     of a page to scrape. <b>ChatGPT</b>, <b>claude.ai</b> or <b>Codex</b> connects
                     with a URL and no sign-in.</li>
-                <li><b>Code decides the price; Claude only says it.</b> Counters are clamped to a
-                    soft floor, and an output guard reads the sentence before it leaves — it caught
-                    <b>16</b> tries at naming a floor or cost figure.</li>
+                <li><b>Code decides the price; Claude only says it.</b> An output guard caught
+                    <b>16</b> tries at naming a floor or cost figure and rewrote them.</li>
                 <li><b>ask_question</b> answers from catalog data or returns <b>grounded: false</b>.
-                    An agent can route around an honest “I don’t know”; not around a confident
-                    guess.</li>
-                <li><b>accept_deal</b> locks an <b>HMAC-signed</b> deal bound to that buyer; paying
-                    charges the stored amount, and a second call comes back <b>already_paid</b>.</li>
-                <li>Agents retry, so a restart can’t pay off: buyer memory, jittered concessions and
-                    a probe breaker mean a fresh negotiation never finds a better price.</li>
+                    An agent can route around an honest “I don’t know.”</li>
+                <li><b>accept_deal</b> locks an <b>HMAC-signed</b> deal; a second payment call comes
+                    back <b>already_paid</b>.</li>
+                <li>Agents retry, so buyer memory and a probe breaker keep a fresh negotiation from
+                    finding a better price.</li>
               </ul>
             </div>
 
@@ -1172,25 +1170,21 @@
               </p>
 
               <p>
-                Commerce is built for eyes and thumbs, and the buyer is increasingly an agent that
-                scrapes a page, guesses at the specs, and takes one price or leaves it. sell2agent
-                puts an agent on the <b>seller’s</b> side: it answers from the real catalog,
-                haggles, and takes payment in one approval — inside a floor and a margin the human
+                A buying agent scrapes the page, guesses at the specs, and takes one price or
+                leaves it. sell2agents puts an agent on the <b>seller’s</b> side: it answers from
+                the real catalog, haggles, and takes payment in one approval — inside a floor the
                 seller sets, and <span class="hl">those limits live in code, not in a
                 prompt</span>.
               </p>
 
               <p>
-                We tested that before building it: a prompt-only <b>Opus</b> seller, told to hold a
-                $41,700 floor, gave it up for $28,500 after one injected line, while the same
-                attacks against the code engine broke nothing. So <b>Claude writes the words and
-                code sets the number</b>.
+                We tested that first. A prompt-only <b>Opus</b> seller gave up a $41,700 floor for
+                $28,500 after one injected line; the code engine broke nothing.
               </p>
 
               <p>
-                I built the seller’s side of the glass: the live feed and guardrail log, the deal
-                card an agent renders inside its own client, and the evals behind every number
-                here.
+                I built the dashboard, the deal card an agent renders in its own client, and the
+                evals behind every number here.
               </p>
 
               <div class="stats">
